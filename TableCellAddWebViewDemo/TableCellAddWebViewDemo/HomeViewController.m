@@ -20,6 +20,7 @@
     _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 1)];
     _webView.delegate = self;
     _webView.scrollView.scrollEnabled = NO;
+    //预先加载url
     [self.webView loadRequest:[[NSURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://www.baidu.com/"]]];
 }
 
@@ -82,7 +83,7 @@
 {
     //获取到webview的高度
     CGFloat height = [[self.webView stringByEvaluatingJavaScriptFromString:@"document.body.offsetHeight"] floatValue];
-    self.webView.frame = CGRectMake(self.webView.frame.origin.x,self.webView.frame.origin.y, kScreenWidth, height + 16);
+    self.webView.frame = CGRectMake(self.webView.frame.origin.x,self.webView.frame.origin.y, kScreenWidth, height);
     [self.tableView reloadData];
 }
 - (void)webViewDidStartLoad:(UIWebView *)webView
